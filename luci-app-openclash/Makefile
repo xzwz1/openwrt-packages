@@ -67,7 +67,7 @@ endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/*.*.lmo $(1)/usr/lib/lua/luci/i18n/
+	$(INSTALL_DATA) $(OPENCLASH_DIR)/*.*.lmo $(1)/usr/lib/lua/luci/i18n/
 	$(CP) $(OPENCLASH_DIR)/root/* $(1)/
 	$(CP) $(OPENCLASH_DIR)/luasrc/* $(1)/usr/lib/lua/luci/
 endef
