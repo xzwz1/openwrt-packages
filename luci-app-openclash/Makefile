@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 PKG_SOURCE:=OpenClash-v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/vernesong/OpenClash/archive/refs/tags/v$(PKG_VERSION).tar.gz?
 PKG_HASH:=3253dd3d1f12a197936098c2c5f162ab813a27bf03938a991a323b24fdeb9520
-PKG_BUILD_DIR:=$(BUILD_DIR)/OpenClash-$(PKG_VERSION)/luci-app-openclash
+PKG_BUILD_DIR:=$(BUILD_DIR)/OpenClash-$(PKG_VERSION)\nOPENCLASH_DIR:=$(PKG_BUILD_DIR)/luci-app-openclash
 
 PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 PKG_LICENSE:=MIT
@@ -59,17 +59,17 @@ define Build/Configure
 endef
 
 define Build/Compile
-	$(foreach po,$(wildcard $(PKG_BUILD_DIR)/po/zh-cn/*.po), \
-		po2lmo $(po) $(PKG_BUILD_DIR)/$(patsubst %.po,%.lmo,$(notdir $(po)));)
-	chmod 0755 $(PKG_BUILD_DIR)/root/etc/init.d/openclash
-	chmod -R 0755 $(PKG_BUILD_DIR)/root/usr/share/openclash/
+	$(foreach po,$(wildcard $(OPENCLASH_DIR)/po/zh-cn/*.po), \
+		po2lmo $(po) $(OPENCLASH_DIR)/$(patsubst %.po,%.lmo,$(notdir $(po)));)
+	chmod 0755 $(OPENCLASH_DIR)/root/etc/init.d/openclash
+	chmod -R 0755 $(OPENCLASH_DIR)/root/usr/share/openclash/
 endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/*.*.lmo $(1)/usr/lib/lua/luci/i18n/
-	$(CP) $(PKG_BUILD_DIR)/root/* $(1)/
-	$(CP) $(PKG_BUILD_DIR)/luasrc/* $(1)/usr/lib/lua/luci/
+	$(CP) $(OPENCLASH_DIR)/root/* $(1)/
+	$(CP) $(OPENCLASH_DIR)/luasrc/* $(1)/usr/lib/lua/luci/
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
