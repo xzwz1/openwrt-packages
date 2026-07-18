@@ -6,7 +6,8 @@ PKG_RELEASE:=1
 PKG_SOURCE:=OpenClash-v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/vernesong/OpenClash/archive/refs/tags/v$(PKG_VERSION).tar.gz?
 PKG_HASH:=3253dd3d1f12a197936098c2c5f162ab813a27bf03938a991a323b24fdeb9520
-PKG_BUILD_DIR:=$(BUILD_DIR)/OpenClash-$(PKG_VERSION)\nOPENCLASH_DIR:=$(PKG_BUILD_DIR)/luci-app-openclash
+PKG_BUILD_DIR:=$(BUILD_DIR)/OpenClash-$(PKG_VERSION)
+OPENCLASH_DIR:=$(PKG_BUILD_DIR)/luci-app-openclash
 
 PKG_MAINTAINER:=vernesong <https://github.com/vernesong/OpenClash>
 PKG_LICENSE:=MIT
