@@ -61,8 +61,8 @@ endef
 
 define Build/Compile
 	for po in $(OPENCLASH_DIR)/po/zh-cn/*.po; do \
-		name="${po##*/}"; \
-		po2lmo "$po" "$(OPENCLASH_DIR)/${name%.po}.lmo"; \
+		name="$${po##*/}"; \
+		po2lmo "$$po" "$(OPENCLASH_DIR)/$${name%.po}.lmo"; \
 	done
 	chmod 0755 $(OPENCLASH_DIR)/root/etc/init.d/openclash
 	chmod -R 0755 $(OPENCLASH_DIR)/root/usr/share/openclash/
